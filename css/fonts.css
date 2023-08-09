@@ -1,0 +1,19 @@
+@font-face { 
+    font-family: 'Lovecraft'; 
+    src: url('../fonts/lovecraft.otf'); 
+}
+
+@font-face { 
+    font-family: 'Winterbeauty'; 
+    src: url('../fonts/winterbeauty.otf'); 
+}
+
+@font-face { 
+    font-family: 'UssrStencil'; 
+    src: url('../fonts/ussrstencil.otf'); 
+}
+
+@font-face { 
+    font-family: 'Matials'; 
+    src: url('../fonts/matias.otf'); 
+}
