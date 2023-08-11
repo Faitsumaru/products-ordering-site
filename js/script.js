@@ -10,7 +10,7 @@ var application = new Vue({
         filterSelOptions: [
           { text: 'ID', value: 'id' },
           { text: 'Date', value: 'date' },
-          { text: 'Name', value: 'name' },
+          { text: 'Name', value: 'name' }, 
           { text: 'Count', value: 'count' },
           { text: 'Distance', value: 'distance' }
         ]
