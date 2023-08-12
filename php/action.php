@@ -13,7 +13,7 @@ function fetchDATA($sql) {
 	$res->free();
 	$mysqli->close();
 	
-	echo (json_encode ($arr));
+	echo (json_encode ($arr)); 
 }
 
 $sql = "select * from lt_table";
