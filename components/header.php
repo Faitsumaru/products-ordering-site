@@ -34,7 +34,7 @@
                             <a href="products_list.php" class="header__nav-link">Список товаров</a>
                         </li>
                         <li>
-                            <a href="" class="header__nav-link">Сделать заказ</a>
+                            <a href="make_order.php" class="header__nav-link">Сделать заказ</a>
                         </li>
                     </ul>
                 </nav>

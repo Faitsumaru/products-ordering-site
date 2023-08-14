@@ -1,92 +1,215 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1.0">
-    <title>Logistics Transportation Table</title>
-    
-    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
-    <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/reset.css">
-  </head>
+    <title>Yandex - Главная</title>
+</head>
+<body>
+    
+    <div class="hero">
+        <div class="container">
+            <header class="header header-main">
 
-  <body>
+                <div class="header__inner">
+                    <a href="" class="header__logo">
+                        <img src="images/logo.svg" alt="yandex logo" class="header__logo-img">  
+                        
+                        <img src="images/logo_text.svg" alt="Доставка" class="header__logo-text">
+                    </a>
 
-    <div id="app"> 
-      <div class="container">
-        
-        <h1 class="title"><hr>Logistics Transportation Table on Vue.js<hr></h1>
+                    <nav class="header__nav">
+                        <ul class="header__nav-items">
+                            <li>
+                                <a href="index.html" class="header__nav-link">Главная</a>
+                            </li>
+                            <li>
+                                <a href="products_list.php" class="header__nav-link">Список товаров</a>
+                            </li>
+                            <li>
+                                <a href="make_order.php" class="header__nav-link">Сделать заказ</a>
+                            </li>
+                        </ul>
+                    </nav>
 
-        <div class="filter-box">
-          <select name="searchSelect" id="" @change="filterSelect(filterSelType)" v-model="filterSelType" class="filter-sel">
-            <option v-for="item in filterSelOptions" :value="item.value">{{ item.text }}</option>
-          </select>
-          
-          <input v-model="searchInfo" @change="changeList()" type="text" class="search" placeholder="Search">
-
-          <button class="btn__all-items" @click="fullArr()">
-            <i class="all-items-icon fa-solid fa-list"></i>
-          </button>
-        </div>
-          
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <div class="row">
-              <h2 class="panel-title"> Таблица перевозок:</h2>
-            </div>
-          </div>
-
-          <div class="panel-body">
-            <div class="table-responsive">
-              
-              <table class="table table-bordered table-striped">
-                <tr>
-                  <th @click="sortBy('id')">ID <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('date')">Date <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('name')">Name <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('count')">Count <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('distance')">Distance <i class="fa fa-fw fa-sort"></i></th>
-                </tr>
-                <tr v-for="i in filteredList"> 
-                  <td>{{ i.id }}</td>
-                  <td>{{ i.date }}</td>
-                  <td>{{ i.name }}</td>
-                  <td>{{ i.count }}</td>
-                  <td>{{ i.distance }}</td>
-                </tr>
-              </table>
-
-              <div class="table-pagination">
-                <button @click="leftClick()" :disabled="pageNumber === 1" class="arrow arrow-left">
-                  <i class="fa-solid fa-arrow-left"></i>
-                </button>
-
-                <div class="page" 
-                    v-for="page in pages" 
-                    @click="pageClick(page)" 
-                    :key="page"
-                    :class="{'page-active': page === pageNumber}">
-                          {{ page }}
+                    <ul class="header__sign">
+                        <li class="header__sign-item">
+                            <a href="login.php" class="header__sign-link">Вход</a>
+                        </li>
+                        <li class="header__sign-item">
+                            <a href="reg.php" class="header__sign-link">Регистрация</a>
+                        </li>
+                    </ul>
                 </div>
-
-                <button @click="rightClick()" :disabled="pageNumber > Math.ceil(this.allData.length / 10)" class="arrow arrow-right">
-                  <i class="fa-solid fa-arrow-right"></i>
-                </button>
-              </div>
-
+            </header>
+            
+            <div class="hero__inner">
+                
+                <div class="hero__textbox">
+                    <h1 class="hero__title">Яндекс доставит ваши товары быстро и надежно</h1>
+                    <p class="hero__text">Мы предоставляем услуги по доставке товаров на беспилотном автомобильном транспорте</p>
+                    <a href="make_order.php" class="hero__btn btn">Сделать заказ</a>
+                </div>
+                
+                <div class="hero__img">
+                    <img src="images/hero_car.png" alt="car">
+                </div>
+                
             </div>
-          </div>
-
         </div>
-
-      </div>
     </div>
 
-  </body>
-</html>
+    <main class="main">
+        <div class="container">
 
-<script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-<script type="text/javascript" src="js/script.js"></script>
+            <h2 class="main__title" id="features">Особенности и актуальность</h2>
+            <p class="main__text">Наш сервис предоставляет физическим лицам спектр услуг по учету заказов на автомобильном беспилотном транспорте.
+            Учет заказов – это очень распространенная на сегодняшний день деятельность, требующая большого количества данных и как нельзя лучше подходящая для примера проектирования информационной системы. А учет заказов с применением беспилотного транспорта – очень перспективная и актуальная концепция оказания услуг в будущем.</p>
+
+            <ul class="main__features">
+                <li class="main__features-item">
+                    <img src="images/features/1.svg" alt="" class="main__features-img">
+                    <span class="main__features-title">Быстрая доставка товара</span>
+                    <p class="main__features-text">Быстро доставим товар в любую точку страны.</p>
+                </li>
+                <li class="main__features-item">
+                    <img src="images/features/2.svg" alt="" class="main__features-img">
+                    <span class="main__features-title">Простое оформление заказа</span>
+                    <p class="main__features-text">Оформление заказа на нашем сайте происходит всего за несколько кликов!</p>
+                </li>
+                <li class="main__features-item">
+                    <img src="images/features/3.svg" alt="" class="main__features-img">
+                    <span class="main__features-title">Современные решения</span>
+                    <p class="main__features-text">Мы предлагаем самые актуальные решения по доставке вашего товара в различные пункты выдачи, используя беспилотный транспорт.</p>
+                </li>
+            </ul>
+
+            <ul class="main__elements">
+                <li class="main__item">
+                    <div class="main__textbox">
+                        <h2 class="main__title">Беспилотный транспорт</h2>
+                        <p class="main__text">Мы гарантируем быструю, надежную и безопасную доставку товаров с помощью наших беспилотных автомобилей. Обращайтесь к нам, и мы с удовольствием поможем вам осуществить доставку в любое удобное для вас время и место.</p>
+                    </div>
+                    <div class="main__img">
+                        <img src="images/actualities/1.png" alt="car">
+                    </div>
+                </li>
+                <li class="main__item">
+                    <div class="main__textbox">
+                        <h2 class="main__title">Заказ в любую точку страны</h2>
+                        <p class="main__text">С помощью нашего сервиса клиенту будет дана возможность сделать заказ на любой интересующий его адрес и выбрать необходимый тип доставки товара:</p>
+                        <ul class="main__textlist">
+                            <li>В пункт выдачи</li>
+                            <li>В почтовое отделение</li>
+                            <li>Клиенту на дом</li>
+                        </ul>
+                    </div>
+                    <div class="main__img">
+                        <img src="images/actualities/2.png" alt="map">
+                    </div>
+                </li>
+                <li class="main__item">
+                    <div class="main__textbox">
+                        <h2 class="main__textbox-title">Заказ на любую дату</h2>
+                        <p class="main__textbox-text">С помощью нашего сервиса пользователю будет дана возможность оформить заказ на любое удобное клиенту время.</p>
+                    </div>
+                    <div class="main__img">
+                        <img src="images/actualities/3.png" alt="calendar">
+                    </div>
+                </li>
+            </ul>
+
+        </div>
+    </main>
+
+    <div class="villain">
+        <div class="container">
+
+            <div class="villain__about">
+                <h2 class="villain__title" id="about">О нас</h2>
+
+                <p class="villain__text"><b>Yandex</b> — компания, которая предоставляет возможность осуществлять доставку товаров с помощью беспилотных автомобилей. Мы используем новейшие технологии и системы контроля, чтобы гарантировать безопасность и надежность наших услуг. Вы можете оформить заказ на нашем сайте и мы доставим ваш товар в любое удобное для вас место и время.</p>
+                <p class="villain__text">Беспилотные автомобили оснащены специальными датчиками, которые позволяют им безопасно и точно доставлять товары по заданному маршруту. Кроме того, наша система контроля позволяет отслеживать местоположение автомобилей и мониторить их состояние в режиме реального времени.</p>
+                <p class="villain__text">Для того чтобы воспользоваться услугами доставки с помощью беспилотных автомобилей, необходимо оформить заказ на нашем сайте. Ваш заказ будет автоматически передан в систему управления, которая назначит ближайший свободный автомобиль для доставки.</p>
+                <p class="villain__text">Мы гарантируем быструю, надежную и безопасную доставку товаров с помощью наших беспилотных автомобилей. Обращайтесь к нам, и мы с удовольствием поможем вам осуществить доставку в любое удобное для вас время и место!</p>
+
+                <ul class="villain__partners">
+                    <li class="villain__partner">
+                        <a href="">
+                            <img src="images/partners/1.svg" alt="dpd">
+                        </a>
+                    </li>
+                    <li class="villain__partner villain__partner-madi">
+                        <a href="">
+                            <img src="images/partners/2.svg" alt="madi">
+                        </a>
+                    </li>
+                    <li class="villain__partner">
+                        <a href="">
+                            <img src="images/partners/3.svg" alt="pickpoint">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <footer class="footer footer-main">
+                <div class="footer__inner">
+                    <div class="footer__logo">
+                        <a href="">
+                            <img src="images/logo_footer.svg" alt="">
+
+                            <img src="images/logo_text.svg" alt="Доставка" class="header__logo-text">
+                        </a>
+                    </div>
+
+                    <nav class="footer__nav">
+                        <ul class="footer__nav-items">
+                            <li>
+                                <a href="index.html" class="footer__nav-link">Главная</a>
+                            </li>
+                            <li>
+                                <a href="#features" class="footer__nav-link">Особенности и актуальность</a>
+                            </li>
+                            <li>
+                                <a href="#about" class="footer__nav-link">О нас</a>
+                            </li>
+                        </ul>
+                    </nav>
+
+                    <ul class="footer__social">
+                        <li>
+                            <a href="" class="footer__social-item">
+                                <img src="images/social/vk.svg" alt="vk">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="footer__social-item">
+                                <img src="images/social/whatsapp.svg" alt="whatsapp">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="" class="footer__social-item">
+                                <img src="images/social/telegram.svg" alt="telegram">
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+                <p class="footer__copy">
+                    © Yandex Inc., 2023 г. Все права защищены.
+                </p>
+            </footer>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
