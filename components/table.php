@@ -1,3 +1,17 @@
+<?php 
+
+// require_once dirname(__DIR__, 1) . '/php/funcs.php';
+
+// $sql = "SELECT *, [Consignment_Note Goods].Count 
+// FROM Goods
+// INNER JOIN [Consignment_Note Goods] 
+// ON [Consignment_Note Goods].[ID_Goods (FK)] = Goods.ID_Goods";
+
+// getData($sql);
+
+?>
+
+
 <!DOCTYPE html>
 <html>
   <head>

@@ -17,9 +17,9 @@ $goods = get_allGoods();
 <div id="app">
 
 <div class="container">
-    <div class="sign_up">
+    <div class="sign">
 
-        <h2 class="sign_up-title">Оформление заказа</h2>
+        <h2 class="sign-title">Оформление заказа</h2>
 
         <div class="cross-line"></div>
 
@@ -45,22 +45,24 @@ $goods = get_allGoods();
 
                 <div class="form__order">
                     <p class="form__text">Список товаров:</p>
-                    <button class="form__order-clear" type="button" @click="clearOrder()" ></button>
+                    <button class="form__order-clear" type="button" @click="clearOrder()" title="Удалить все товары"></button>
                 </div>
 
                 <ul class="form__list">
-                <?php if (!empty($_SESSION['order'])): ?>
+                    <?php if (!empty($_SESSION['order'])): ?>
+                        <table class="form__item-table-head">
+                            <thead>
+                                <tr>
+                                    <th>Продукт</th>
+                                    <th>Цена</th>
+                                    <th>Кол-во</th>
+                                    <th>Вес</th>
+                                </tr>
+                            </thead>
+                        </table>
                     <?php foreach ($_SESSION['order'] as $id => $item): ?>
                         <li class="form__item">
-                            <table class="form__item-table">
-                                <thead>
-                                    <tr>
-                                        <th>Продукт</th>
-                                        <th>Цена</th>
-                                        <th>Кол-во</th>
-                                        <th>Вес</th>
-                                    </tr>
-                                </thead>
+                            <table class="form__item-table-body">
                                 <tbody>
                                     <tr>
                                         <td><?php echo $item['ObjectName'] ?></td>
@@ -72,7 +74,7 @@ $goods = get_allGoods();
                             </table>
 
                             <?php 
-                                echo '<button class="form__item-btn form__item-del" type="button" @click="deleteFromOrder(' . $goods[$id-1]['ID_Goods'] . ')" ></button>'
+                                echo '<button class="form__item-btn form__item-del" type="button" title="Удалить товар" @click="deleteFromOrder(' . $goods[$id-1]['ID_Goods'] . ')" ></button>'
                             ?>
                         </li>
                         <?php endforeach; ?>
@@ -80,8 +82,19 @@ $goods = get_allGoods();
                         <div class="form__item-result">
                             <p class="form__text form__result">Итого:</p>
                             <div>
-                                <p class="form__text">Количество товаров:<?php echo (' ' .$_SESSION['order.count'] . ' шт.') ?></p>
-                                <p class="form__text">Общая стоимость:<?php echo (' ' . $_SESSION['order.sum'] . ' ₽') ?></p>
+                                <div>
+                                    <p class="form__text">Количество товаров:</p>
+                                    <p class="form__text">Общая стоимость:</p>
+                                </div>
+
+                                <div>
+                                    <p class="form__text">
+                                        <?php echo (' ' .$_SESSION['order.count'] . ' шт.') ?>
+                                    </p>
+                                    <p class="form__text">
+                                        <?php echo (' ' . $_SESSION['order.sum'] . ' ₽') ?>
+                                    </p>
+                                </div>
                             </div>
                         </div>
                 <?php else: ?>
@@ -106,5 +119,7 @@ $goods = get_allGoods();
 <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
+<script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>
 <script src="js/functions.js"></script>
 <script src="js/script.js"></script>

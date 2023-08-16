@@ -22,7 +22,7 @@
 // }
 
 function fetchData($sql) {
-    require_once('db.php');
+    require('db.php');
 
     $stmt = sqlsrv_query($conn, $sql);
 

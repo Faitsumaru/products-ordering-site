@@ -55,7 +55,7 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                         <a href="login.php" class="header__sign-link">Вход</a>
                     </li>
                     <li class="header__sign-item">
-                        <a href="reg.php" class="header__sign-link">Регистрация</a>
+                        <a href="registration.php" class="header__sign-link">Регистрация</a>
                     </li>
                 </ul>
                 
