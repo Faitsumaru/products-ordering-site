@@ -1,7 +1,5 @@
 <?php
 
-session_start();
-
 include_once('components/header.php');
 
 include_once('components/table.php');

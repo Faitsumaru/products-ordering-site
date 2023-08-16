@@ -1,3 +1,10 @@
+<?php
+error_reporting(-1);
+session_start();
+
+require_once dirname(__DIR__, 1) . '/php/funcs.php';
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,7 +41,11 @@
                             <a href="products_list.php" class="header__nav-link">Список товаров</a>
                         </li>
                         <li>
-                            <a href="make_order.php" class="header__nav-link">Сделать заказ</a>
+                            <a href="make_order.php" class="header__nav-link">Сделать заказ 
+                                <b class="header__nav-count">
+                                    <?php echo $_SESSION['order.count'] ?? 0 ?>
+                                </b>
+                            </a>
                         </li>
                     </ul>
                 </nav>
@@ -51,6 +62,3 @@
             </div>
         </div>
     </header>
-
-</body>
-</html>

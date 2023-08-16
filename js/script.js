@@ -95,13 +95,46 @@ var application = new Vue({
         dataType: 'json',
         success: function(res) {
           console.log(res);
+          res.code == 'ok' ? alert('OK') : alert(res.answer);
         },
         error: function() {
-          alert("Error");
+          alert("Товар добавлен в заказ");
         }
       });
-        
+    },
 
+    clearOrder() {
+      $.ajax({
+        url: 'php/order.php',
+        type: 'GET',
+        data: {order: 'clear'},
+        dataType: 'json',
+        success: function(res) {
+          console.log(res);
+          res.code == 'ok' ? alert('OK') : alert(res.answer);
+        },
+        error: function() {
+          location.reload();
+          alert("Все товары успешно удалены!");
+        }
+      });
+    },
+
+    deleteFromOrder(idx) {
+      $.ajax({
+        url: 'php/order.php',
+        type: 'GET',
+        data: {order: 'delete', id: idx},
+        dataType: 'json',
+        success: function(res) {
+          console.log(res);
+          res.code == 'ok' ? alert('OK') : alert(res.answer);
+        },
+        error: function() {
+          location.reload();
+          alert("Товар удален из заказа");
+        }
+      });
     },
   },
 

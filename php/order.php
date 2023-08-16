@@ -14,9 +14,36 @@ if (isset($_GET['order'])) {
             $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
             $goods = get_goods($id);
 
-            echo (!$goods) ? json_encode(['code' => 'error', 'answer' => 'Error goods']) : json_encode(['code' => 'ok', 'answer' => $goods]);
+            if (!$goods) {
+                echo json_encode(['code' => 'error', 'answer' => 'Error in goods adding']);
+            } else {
+                add_to_order($goods); 
+                // json_encode(['code' => 'ok', 'answer' => $goods]);
+                ob_start();
+                $order = ob_get_clean();
+                json_encode(['code' => 'ok', 'answer' => $order]);
+            }
             break;
-        
+        case 'clear':
+            if (!empty($_SESSION['order'])) {
+                unset($_SESSION['order']);
+                unset($_SESSION['order.sum']);
+                unset($_SESSION['order.count']);
+            }
+            break;
+        case 'delete':
+            $id = isset($_GET['id']) ? (int)$_GET['id'] : 0;
+            $goods = get_goods($id);
+
+            if (!$goods) {
+                echo json_encode(['code' => 'error', 'answer' => 'All goods have been already deleted!']);
+            } else {
+                del_from_order($goods); 
+                ob_start();
+                $order = ob_get_clean();
+                json_encode(['code' => 'ok', 'answer' => $order]);
+            }
+            break;
     }
 }
 
