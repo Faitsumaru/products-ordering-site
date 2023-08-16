@@ -16,9 +16,9 @@
 <body>
     
     <div class="container">
-        <div class="sign_up">
+        <div class="sign sign_up">
 
-            <h2 class="sign_up-title">Регистрация</h2>
+            <h2 class="sign-title">Регистрация</h2>
 
             <div class="cross-line"></div>
 
@@ -26,7 +26,7 @@
 
                 <div class="form__box">
                     <p class="form__text">Логин <b>*</b></p>
-                    <input type="text" class="form__input" placeholder="Введите логин">
+                    <input type="text" class="form__input" placeholder="Введите номер телефона" value="+7">
 
                     <p class="form__text">Пароль <b>*</b></p>
                     <input type="password" class="form__input form__input-pssw" placeholder="Введите пароль">
@@ -34,6 +34,13 @@
                     <button type="button" class="form__input-eye" onclick="passwordVisible()">
                         <img src="images/password_eye.svg" alt="pssw eye">
                     </button>
+
+                    <p class="form__check">
+                        <input type="checkbox" id="check" value="1">
+                        <label for="check">Cогласие на обработку персональных данных</label>
+                    </p>
+                    
+                    
                 </div>
 
                 <input type="button" class="form__btn btn" value="Зарегистрироваться">

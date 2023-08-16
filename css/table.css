@@ -67,7 +67,7 @@ hr {
 }
 
 .page-active {
-    background-color: darkred;
+    background-color: #EC1C24;
     border: 2px solid white;
     color: whitesmoke;
     cursor: pointer;
