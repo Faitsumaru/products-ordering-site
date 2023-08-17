@@ -109,26 +109,4 @@ function getData($tsql): string
     return $res;
 }
 
-function getLoginData($tsql): string
-{
-    require('db.php');
-
-    $stmt = sqlsrv_query($conn, $tsql);
-
-    if (!$stmt)
-        echo 'Error';
-
-    $arr = array();
-
-    while ($obj = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
-        $arr[] = $obj;
-    }
-    $res = json_encode($arr);
-    
-    sqlsrv_free_stmt($stmt);
-    sqlsrv_close($conn);
-
-    return $res;
-}
-
 ?>

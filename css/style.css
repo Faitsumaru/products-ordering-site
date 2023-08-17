@@ -215,6 +215,23 @@ nav a:hover::after {
   border-radius: 68px;
   padding: 10px 30px;
 }
+.header__sign-link, .header__sign-text {
+  font-family: "Roboto";
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 19px;
+}
+.header__sign-text {
+  text-align: center;
+  line-height: 24px;
+  margin: 0 auto;
+}
+.header__sign-login {
+  display: flex;
+  justify-content: end;
+  align-items: center;
+}
 
 .main {
   padding: 50px 0;
@@ -434,6 +451,13 @@ nav a:hover::after {
   font-size: 48px;
   padding-bottom: 32px;
 }
+.sign-postTitle {
+  font-family: "Roboto";
+  text-align: center;
+  line-height: 46px;
+  font-size: 30px;
+  padding: 20px 0;
+}
 .sign .cross-line {
   background-image: url("../images/cross-line.svg");
   background-repeat: no-repeat;
@@ -442,6 +466,10 @@ nav a:hover::after {
   max-width: 100%;
   height: 7px;
   margin-bottom: 25px;
+}
+.sign .cross-line-invert {
+  transform: rotate(180deg);
+  margin-bottom: 0;
 }
 
 .form {
@@ -588,6 +616,14 @@ nav a:hover::after {
   background-color: #F2DEDE;
   color: #EC1C24;
 }
+.form__success {
+  margin-bottom: 25px;
+  border-radius: 4px;
+  width: 100%;
+  padding: 12px;
+  background-color: #D4EDDA;
+  color: #40754C;
+}
 .form textarea {
   width: 100%;
   height: 130px;
@@ -597,13 +633,16 @@ nav a:hover::after {
 .form__input-eye {
   position: absolute;
   right: 12px;
-  bottom: 69px;
+  bottom: 179px;
   width: 24px;
   height: 24px;
   cursor: pointer;
   background: transparent;
   border: none;
   padding: 0;
+}
+.form__input-repassword_eye {
+  bottom: 69px;
 }
 .form__check {
   font-size: inherit;

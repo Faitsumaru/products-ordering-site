@@ -1,8 +1,10 @@
 <?php
+
 error_reporting(-1);
 session_start();
 
 require_once dirname(__DIR__, 1) . '/php/funcs.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +20,7 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
-    <title>Yandex - Сделать заказ</title>
+    <title>Yandex</title>
 </head>
 <body>
     
@@ -35,7 +37,7 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                 <nav class="header__nav">
                     <ul class="header__nav-items">
                         <li>
-                            <a href="index.html" class="header__nav-link">Главная</a>
+                            <a href="index.php" class="header__nav-link">Главная</a>
                         </li>
                         <li>
                             <a href="products_list.php" class="header__nav-link">Список товаров</a>
@@ -50,6 +52,23 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                     </ul>
                 </nav>
 
+<?php  
+    if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
+?>
+                <ul class="header__sign header__sign-login">
+                    <li class="header__sign-item">
+                        <h6 class="header__sign-text">
+                            Добро пожаловать, <br/> 
+                            <a href="user_profile.php" title="Личный кабинет" class="header__sign-link">
+                                <?php echo $_SESSION['name']; ?>
+                            </a>
+                        </h6>
+                    </li>
+                    <li class="header__sign-item">
+                        <a href="php/logout.php" class="header__sign-link logout-btn">Выход</a>
+                    </li>
+                </ul>
+<?php } else { ?>
                 <ul class="header__sign">
                     <li class="header__sign-item">
                         <a href="login.php" class="header__sign-link">Вход</a>
@@ -58,7 +77,9 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                         <a href="registration.php" class="header__sign-link">Регистрация</a>
                     </li>
                 </ul>
-                
+<?php 
+    }
+?>                
             </div>
         </div>
     </header>

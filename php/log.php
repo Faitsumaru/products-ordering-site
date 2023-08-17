@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 require('funcs.php');
 
 if (isset($_POST['phone']) && isset($_POST['password'])) {
@@ -9,9 +10,11 @@ if (isset($_POST['phone']) && isset($_POST['password'])) {
         $data = htmlspecialchars($data);
         return $data;
     }
+    
+    $tel = validate($_POST['phone']);
+    $pass = validate($_POST['password']);
 
-    $tel = $_POST['phone'];
-    $pass = $_POST['password'];
+    // $pass = md5($pass);
 
     if (empty($tel) && !empty($pass)) {
         header("Location: ../login.php?error=Необходимо ввести номер телефона!");
@@ -33,19 +36,25 @@ if (isset($_POST['phone']) && isset($_POST['password'])) {
         }
 
         if (sqlsrv_has_rows($stmt)) {
-            echo ("Logged in!");
+            $row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+            if ($row['Tel'] === $tel && $row['Password'] === $pass) {
+                $_SESSION['id'] = $row['ID_Client'];
+                $_SESSION['name'] = $row['FName'];
+                $_SESSION['tel'] = $row['Tel'];
+                header("Location: ../index.php");
+                exit();
+            } else {
+                header("Location: ../login.php?error=Неверный логин или пароль!");
+                exit();
+            }
         } else {
             header("Location: ../login.php?error=Неверный логин или пароль!");
             exit();
         }
-
-        sqlsrv_free_stmt($stmt);
-        sqlsrv_close($conn);
-        }
-
     } else {
         header("Location: ../login.php");
         exit();
     }
+}
 
 ?>

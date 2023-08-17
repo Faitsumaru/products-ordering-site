@@ -2,12 +2,14 @@ $whiteColor: #fff;
 $blackColor: #000;
 $mainText: #8794BA;
 $redColor: #EC1C24;
+$greenColor: #40754C;
 $titleColor: #172755;
 $bgColor: #E5E5E5;
 $splitterColor: #2A407C;
 $greyColor: #6F7482;
 $inputColor: #F8FAFC;
 $errorBgColor: #F2DEDE;
+$successBgColor: #D4EDDA;
 
 .container {
     margin: 0 auto;
@@ -233,6 +235,24 @@ nav a {
             filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
             border-radius: 68px;
             padding: 10px 30px;
+        }
+        &-link,
+        &-text {
+            font-family: 'Roboto';
+            font-style: normal;
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 19px;
+        }
+        &-text {
+            text-align: center;
+            line-height: 24px;
+            margin: 0 auto;
+        }
+        &-login {
+            display: flex;
+            justify-content: end;
+            align-items: center;
         }
     }
 }
@@ -470,7 +490,13 @@ nav a {
         font-size: 48px;
         padding-bottom: 32px;
     }
-
+    &-postTitle {
+        font-family: 'Roboto';
+        text-align: center;
+        line-height: 46px;
+        font-size: 30px;
+        padding: 20px 0;
+    }
     .cross-line {
         background-image: url('../images/cross-line.svg');
         background-repeat: no-repeat;
@@ -479,6 +505,10 @@ nav a {
         max-width: 100%;
         height: 7px;
         margin-bottom: 25px;
+        &-invert {
+            transform: rotate(180deg);
+            margin-bottom: 0;
+        }
     }
 }
 
@@ -621,6 +651,15 @@ nav a {
         background-color: $errorBgColor;
         color: $redColor;
     }
+    &__success {
+        margin-bottom: 25px;
+        border-radius: 4px;
+        width: 100%;
+        padding: 12px;
+        background-color: $successBgColor;
+        color: $greenColor;
+    }
+    
     textarea {
         width: 100%;
         height: 130px;
@@ -628,15 +667,18 @@ nav a {
         margin-bottom: 10px;
     }
     &__input-eye {
-            position: absolute;
-            right: 12px;
-            bottom: 69px;
-            width: 24px;
-            height: 24px;
-            cursor: pointer;
-            background: transparent;
-            border: none;
-            padding: 0;
+        position: absolute;
+        right: 12px;
+        bottom: 179px;
+        width: 24px;
+        height: 24px;
+        cursor: pointer;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+    &__input-repassword_eye {
+        bottom: 69px;
     }
     &__check {
         font-size: inherit;

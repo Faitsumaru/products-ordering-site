@@ -13,13 +13,13 @@
                 <nav class="footer__nav">
                     <ul class="footer__nav-items">
                         <li>
-                            <a href="index.html" class="footer__nav-link">Главная</a>
+                            <a href="index.php" class="footer__nav-link">Главная</a>
                         </li>
                         <li>
-                            <a href="index.html#features" class="footer__nav-link">Особенности и актуальность</a>
+                            <a href="index.php#features" class="footer__nav-link">Особенности и актуальность</a>
                         </li>
                         <li>
-                            <a href="index.html#about" class="footer__nav-link">О нас</a>
+                            <a href="index.php#about" class="footer__nav-link">О нас</a>
                         </li>
                     </ul>
                 </nav>
