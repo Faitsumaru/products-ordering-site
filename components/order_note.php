@@ -109,6 +109,7 @@ if(isset($_POST['submit'])) {
             $_SESSION['deliveryDate'] = $_POST['deliveryDate'];
             $_SESSION['serialNumber'] = random_int(1000, 10000);
             $_SESSION['orderAddress'] = $_POST['address'];
+            $_SESSION['message'] = $_POST['message'];
 
             if (!isset($_SESSION['name']) && !isset($_SESSION['tel'])) {
                 $_SESSION['name'] = $_POST['name'];
@@ -159,6 +160,7 @@ if(isset($_POST['submit'])) {
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Unicase:wght@400;700&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
     <link rel="stylesheet" href="css/reset.css">
     <link rel="stylesheet" href="css/style.css">
     <title>Yandex - Накладная по заказу</title>
@@ -166,6 +168,8 @@ if(isset($_POST['submit'])) {
 <body>
     
     <div class="container">
+        <button id="btn-pdf" onclick="PDF()" title="Скачать в формате PDF"><i class="fa-sharp fa-solid fa-file-arrow-down fa-2xl"></i></button>  
+
         <div class="sign note consignment_note">
 
             <div class="note__head">
@@ -260,6 +264,15 @@ if(isset($_POST['submit'])) {
                         <?php endforeach; ?>
 
                         <div class="note__item-result">
+                            <?php if (!empty($_SESSION['message'])) { ?>
+                            <div>
+                                <p class="note__text">Сообщение:</p>
+                                <p class="note__text">
+                                    <?php echo '«' . ($_SESSION['message']) . '»' ?>
+                                </p>
+                            </div>
+                            <?php } ?>
+
                             <div>
                                 <p class="note__text">Всего товаров:</p>
                                 <p class="note__text">
@@ -282,22 +295,22 @@ if(isset($_POST['submit'])) {
                                     else echo 'Стоимость доставки:'?>
                                 </p>
                                 <p class="note__text">
-                                    <?php if ($_SESSION['orderType'] == "orderingPoint") echo $orderPrice = 300 . ' ₽';
-                                    else if ($_SESSION['orderType'] == "orderingMail") echo $orderPrice = 150 . ' ₽';
-                                    else if ($_SESSION['orderType'] == "orderingHome") echo $orderPrice = 600 . ' ₽';
-                                    else echo $orderPrice = 0 . ' ₽'?>
+                                    <?php if ($_SESSION['orderType'] == "orderingPoint") echo ($orderTypePrice = 300) . ' ₽';
+                                    else if ($_SESSION['orderType'] == "orderingMail") echo ($orderTypePrice = 150) . ' ₽';
+                                    else if ($_SESSION['orderType'] == "orderingHome") echo ($orderTypePrice = 600) . ' ₽';
+                                    else echo $orderTypePrice = 0 . ' ₽'?>
                                 </p>
                             </div>
 
                             <div>
-                                <p class="note__text">Налог:</p>
-                                <p class="note__text">0 ₽</p>
+                                <p class="note__text">Налог (НДС 20%):</p>
+                                <p class="note__text"><?php echo ($orderTax = $_SESSION['order.sum'] * 0.2) . ' ₽' ?></p>
                             </div>
 
                             <div class="note__res">
                                 <p class="note__text note__text-res"><b>Итого</b></p>
                                 <p class="note__text note__text-res"><b>
-                                    <?php echo ($_SESSION['order.sum'] + (int)$orderPrice) . ' ₽' ?></b>
+                                    <?php echo ($_SESSION['order.sum'] + $orderTypePrice + $orderTax) . ' ₽' ?></b>
                                 </p>
                             </div>
                         </div>
@@ -306,6 +319,25 @@ if(isset($_POST['submit'])) {
 
         </div>
     </div>
+
+    <script>
+        function addScript(url) {
+            let script = document.createElement('script');
+            script.type = 'application/javascript';
+            script.src = url;
+            document.head.appendChild(script);
+        }
+
+        addScript('https://raw.githack.com/eKoopmans/html2pdf/master/dist/html2pdf.bundle.js');
+
+        let dpfBtn = document.getElementById('btn-pdf');
+        let consignment_note = document.querySelector('.consignment_note');
+
+        function PDF() {
+            alert("Данные о накладной скачаны!");
+            html2pdf(consignment_note);
+        }
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" type="text/javascript"></script>
     <script src="https://cdn.jsdelivr.net/npm/jquery.maskedinput@1.4.1/src/jquery.maskedinput.min.js" type="text/javascript"></script>

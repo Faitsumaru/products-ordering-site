@@ -765,7 +765,6 @@ nav a {
     align-items: center;
     &-btn {
         border: none;
-        margin-top: 20px;
         border-radius: 4px;
         padding: 2px 10px;
         background-color: $errorBgColor;
@@ -951,6 +950,35 @@ nav a {
                     align-items: center;
                 }
             }
+        }
+    }
+}
+
+#btn-pdf {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    position: absolute;
+    right: 20%;
+    top: 25%;
+}
+
+.profile__box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 25px;
+    a {
+        padding: 6px 12px;
+        background-color: $successBgColor;
+        color: $greenColor;
+        cursor: pointer;
+        transition: all .7s ease;
+        font-size: 16px;
+        border-radius: 4px;
+        &:hover {
+            color: $successBgColor;
+            background-color: $greenColor;
         }
     }
 }
