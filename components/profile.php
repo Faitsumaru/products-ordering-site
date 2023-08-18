@@ -2,37 +2,73 @@
     require_once dirname(__DIR__, 1) . '/php/funcs.php';
 
     $id = $_SESSION['id'];
-    $query = "SELECT * FROM Client WHERE ID_Client='$id'";
-
     global $conn;
-    $params = array($id);
-    $stmt = sqlsrv_query($conn, $query, $params);
 
-    $user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
+    if (!isset($_SESSION['employee_check'])) {
 
-    if (!empty($_POST['submit'])) {
-        if (!empty($_POST['name']) && !empty($_POST['phone']) && !empty($_POST['date']) && !empty($_POST['address']) && !empty($_POST['password'])) {
-		$name = $_POST['name'];
-		$phone = $_POST['phone'];
-        $sex = $_POST['sex'];
-		$date = $_POST['date'];
-		$address = $_POST['address'];
-		$password = $_POST['password'];
-		
-		$updSQL = "UPDATE Client SET FName='$name', Tel='$phone', Sex='$sex', BirthDate='$date', Address='$address', Password='$password' WHERE ID_Client=$id";
+        $query = "SELECT * FROM Client WHERE ID_Client='$id'";
 
-		$stmt = sqlsrv_query($conn, $updSQL, $params);
+        $params = array($id);
+        $stmt = sqlsrv_query($conn, $query, $params);
 
-        $_SESSION['name'] = $name;
+        $user = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC);
 
-        header("Location: user_profile.php");
-        exit();
+        if (!empty($_POST['submit'])) {
+            if (!empty($_POST['name']) && !empty($_POST['phone']) && !empty($_POST['date']) && !empty($_POST['address']) && !empty($_POST['password'])) {
+            $name = $_POST['name'];
+            $phone = $_POST['phone'];
+            $sex = $_POST['sex'];
+            $date = $_POST['date'];
+            $address = $_POST['address'];
+            $password = $_POST['password'];
+            
+            $updSQL = "UPDATE Client SET FName='$name', Tel='$phone', Sex='$sex', BirthDate='$date', Address='$address', Password='$password' WHERE ID_Client=$id";
 
-        } else {
-            header("Location: user_profile.php?error=Есть незаполненные поля!");
+            $stmt = sqlsrv_query($conn, $updSQL, $params);
+
+            $_SESSION['name'] = $name;
+
+            header("Location: user_profile.php");
             exit();
+
+            } else {
+                header("Location: user_profile.php?error=Есть незаполненные поля!");
+                exit();
+            }
         }
-	}
+
+    } else {
+        $query2 = "SELECT * FROM Employee WHERE ID_Employee='$id'";
+
+        $params2 = array($id);
+        $stmt2 = sqlsrv_query($conn, $query2, $params2);
+        $user = sqlsrv_fetch_array($stmt2, SQLSRV_FETCH_ASSOC);
+
+        if (!empty($_POST['submit'])) {
+            if (!empty($_POST['name']) && !empty($_POST['phone']) && !empty($_POST['job']) && !empty($_POST['password'])) {
+
+            $name = $_POST['name'];
+            $phone = $_POST['phone'];
+            $job = $_POST['job'];
+            $password = $_POST['password'];
+            
+            $updSQL = "UPDATE Employee SET FName='$name', Tel='$phone', Job='$job', Password='$password' WHERE ID_Employee=$id";
+
+            $stmt = sqlsrv_query($conn, $updSQL, $params);
+
+            $_SESSION['name'] = $name;
+            $_SESSION['job'] = $job;
+
+            header("Location: user_profile.php");
+            exit();
+
+            } else {
+                header("Location: user_profile.php?error=Есть незаполненные поля!");
+                exit();
+            }
+        }
+    }
+
 ?>
 
 <!DOCTYPE html>
@@ -53,7 +89,7 @@
 <body>
     
     <div class="container">
-        <div class="sign sign_in">
+        <div class="sign sign_in profile">
 
             <h2 class="sign-title sign-title-profile">Личный кабинет</h2>
 
@@ -71,13 +107,16 @@
 
                     <p class="form__text">Телефон</p>
                     <input type="tel" class="form__input f_i" name="phone" id="phone_number" value="<?= $user['Tel'] ?>">
-
+                    
+<?php if (!isset($_SESSION['employee_check'])) { ?>
                     <p class="form__text">Пол</p>
                     <select name="sex" class="form__input">
                         <option value="M" <?= $user['Sex'] == 'M' ? ' selected="selected"' : ''; ?>>Мужской</option>
                         <option value="F" <?= $user['Sex'] == 'F' ? ' selected="selected"' : ''; ?>>Женский</option>
                     </select>
+<?php } ?>
 
+<?php if (!isset($_SESSION['employee_check'])) { ?>
                     <p class="form__text">Дата рождения</p>
                     <?php if(isset($_GET['date'])) { ?>
                         <input type="tel" class="form__input" name="date" id="birth_date" value="<?= $user['BirthDate']->format('d/m/Y') ?>">
@@ -92,6 +131,16 @@
                     <?php } else { ?>
                         <input type="text" class="form__input" name="address" placeholder="Введите адрес доставки" value="<?php echo empty($_POST['address']) ? $user['Address'] : '' ?>">
                     <?php } ?>
+<?php } ?>
+
+<?php if (isset($_SESSION['employee_check'])) { ?>
+                    <p class="form__text">Должность</p>
+                    <?php if(isset($_GET['job'])) { ?>
+                        <input type="job" class="form__input" name="password" value="<?= $user['Job'] ?>">
+                    <?php } else { ?>
+                        <input type="text" class="form__input" name="job" placeholder="Введите должность" value="<?php echo empty($_POST['job']) ? $user['Job'] : '' ?>">
+                    <?php } ?>
+<?php } ?>
 
                     <p class="form__text">Пароль</p>
                     <?php if(isset($_GET['password'])) { ?>
@@ -109,8 +158,8 @@
 
             </form>
 
-            <form method="POST" action="php/delete_user.php?id=<?php echo $_SESSION['id']; ?>" onsubmit="return DeleteConfirm()">
-                <button type="submit" class="delete-btn">Удалить аккаунт</button>
+            <form method="POST" action="php/delete_user.php?id=<?php echo $_SESSION['id']; ?>" onsubmit="return DeleteConfirm()" class="form__del-user">
+                <button type="submit" class="form__del-user-btn">Удалить аккаунт</button>
             </form>
 
         </div>

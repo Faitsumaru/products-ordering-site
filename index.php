@@ -36,12 +36,29 @@
                             <li>
                                 <a href="index.php" class="header__nav-link">Главная</a>
                             </li>
+<?php if (!isset($_SESSION['employee_check'])) { ?>
                             <li>
                                 <a href="products_list.php" class="header__nav-link">Список товаров</a>
                             </li>
                             <li>
                                 <a href="make_order.php" class="header__nav-link">Сделать заказ</a>
                             </li>
+<?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Админ') { ?>
+                            <li>
+                                <a href="" class="header__nav-link">Управление базой данных</a>
+                            </li>
+                            <li></li>
+<?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Менеджер') { ?>
+                            <li>
+                                <a href="" class="header__nav-link">Список заказов клиентов</a>
+                            </li>
+                            <li></li>
+<?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Автомеханик') { ?>
+                            <li>
+                                <a href="auto_list.php" class="header__nav-link">Список автомобилей</a>
+                            </li>
+                            <li></li>
+<?php } ?>
                         </ul>
                     </nav>
 

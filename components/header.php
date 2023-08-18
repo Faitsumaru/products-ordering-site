@@ -39,6 +39,7 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                         <li>
                             <a href="index.php" class="header__nav-link">Главная</a>
                         </li>
+<?php if (!isset($_SESSION['employee_check'])) { ?>
                         <li>
                             <a href="products_list.php" class="header__nav-link">Список товаров</a>
                         </li>
@@ -49,12 +50,26 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                                 </b>
                             </a>
                         </li>
+<?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Админ') { ?>
+                            <li>
+                                <a href="" class="header__nav-link">Управление базой данных</a>
+                            </li>
+                            <li></li>
+<?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Менеджер') { ?>
+                            <li>
+                                <a href="" class="header__nav-link">Список заказов клиентов</a>
+                            </li>
+                            <li></li>
+<?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Автомеханик') { ?>
+                            <li>
+                                <a href="auto_list.php" class="header__nav-link">Список автомобилей</a>
+                            </li>
+                            <li></li>
+<?php } ?>
                     </ul>
                 </nav>
 
-<?php  
-    if (isset($_SESSION['id']) && isset($_SESSION['name'])) {
-?>
+<?php if (isset($_SESSION['id']) && isset($_SESSION['name'])) { ?>
                 <ul class="header__sign header__sign-login">
                     <li class="header__sign-item">
                         <h6 class="header__sign-text">
@@ -77,9 +92,7 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                         <a href="registration.php" class="header__sign-link">Регистрация</a>
                     </li>
                 </ul>
-<?php 
-    }
-?>                
+<?php } ?>             
             </div>
         </div>
     </header>

@@ -35,6 +35,11 @@
                     <p class="form__text">Пароль <b>*</b></p>
                     <input type="password" class="form__input form__input-pssw" placeholder="Введите пароль" name="password">
 
+                    <p class="form__check">
+                        <input type="checkbox" id="check" name="employee_check" value="1">
+                        <label for="check">Вход для сотрудников</label>
+                    </p>
+
                     <button type="button" class="form__input-eye" onclick="passwordVisible()">
                         <img src="images/password_eye.svg" alt="pssw eye">
                     </button>

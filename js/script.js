@@ -14,14 +14,13 @@ var application = new Vue({
         { text: 'Цена', value: 'Price' },
         { text: 'Количество', value: 'Count' },
         { text: 'Производитель', value: 'Producer' },
-        { text: 'Гарантия', value: 'Guarantee' },
       ]
     };
   },
   methods: {
     fetchAllData:function() {
         axios
-          .post('php/action.php')
+          .post('php/action_goods.php')
           .then(res => {
             application.allData = res.data;
             
@@ -157,9 +156,11 @@ var application = new Vue({
       let sel = this.filterSelect();
       var si = this.searchInfo;
       return this.paginatedPages.filter(function (elem) {
-        if(si !== '') {
-          return elem[sel].toLowerCase().indexOf(si) > -1;
-        }
+          if(si !== '') {
+              if (typeof(elem[sel]) === 'string') 
+                  return elem[sel].toLowerCase().includes(si.toLowerCase())
+              return elem[sel].toString().includes(si);
+          }
         return true;
       })
     },

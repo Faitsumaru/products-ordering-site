@@ -2,10 +2,12 @@
 
 // require_once dirname(__DIR__, 1) . '/php/funcs.php';
 
-// $sql = "SELECT *, [Consignment_Note Goods].Count 
-// FROM Goods
-// INNER JOIN [Consignment_Note Goods] 
-// ON [Consignment_Note Goods].[ID_Goods (FK)] = Goods.ID_Goods";
+// $sql = "SELECT Employee.FName AS name, Employee.Job AS job, Employee.Tel as tel, Auto.Brand as brand, Auto.Model as model, Auto.RegNum as reg_num, Auto.ReleaseYear as release_year
+//   FROM Consignment_Note
+// 			INNER JOIN Employee ON Employee.ID_Employee = Consignment_Note.[ID_Employee (FK)]
+// 			INNER JOIN Auto ON Auto.ID_Auto = Consignment_Note.[ID_Auto (FK)]
+//   WHERE Employee.Job = 'Автомеханик'
+// ";
 
 // getData($sql);
 
@@ -27,7 +29,6 @@
   </head>
 
   <body>
-
     <div id="app"> 
       <div class="container">
 
@@ -46,7 +47,7 @@
         <div class="panel panel-default">
           <div class="panel-heading">
             <div class="row">
-              <h2 class="panel-title">Таблица товаров для заказа:</h2>
+              <h2 class="panel-title">Список беспилотных автомобилей и сотрудников:</h2>
             </div>
           </div>
 
@@ -55,28 +56,24 @@
               
               <table class="table table-bordered table-striped">
                 <tr>
-                  <th @click="sortBy('ID_Goods')">ID <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('ObjectName')">Продукт <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('Weight')">Вес <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('Price')">Цена <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('Count')">Количество <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('Producer')">Производитель <i class="fa fa-fw fa-sort"></i></th>
-                  <th @click="sortBy('Guarantee')">Гарантия <i class="fa fa-fw fa-sort"></i></th>
-                  <th>Добавить товар</th>
+                  <th>ID</th>
+                  <th @click="sortBy('name')">Работник <i class="fa fa-fw fa-sort"></i></th>
+                  <th @click="sortBy('job')">Должность <i class="fa fa-fw fa-sort"></i></th>
+                  <th>Телефон</th>
+                  <th @click="sortBy('brand')">Авто <i class="fa fa-fw fa-sort"></i></th>
+                  <th @click="sortBy('model')">Модель <i class="fa fa-fw fa-sort"></i></th>
+                  <th @click="sortBy('reg_num')">Рег. номер <i class="fa fa-fw fa-sort"></i></th>
+                  <th @click="sortBy('release_year')">Год выпуска <i class="fa fa-fw fa-sort"></i></th>
                 </tr>
                 <tr v-for="(i, idx) in filteredList" :key="idx">
-                  <td>{{ i.ID_Goods }}</td>
-                  <td>{{ i.ObjectName }}</td>
-                  <td>{{ i.Weight }}</td>
-                  <td>{{ i.Price }}</td>
-                  <td>{{ i.Count }}</td>
-                  <td>{{ i.Producer }}</td>
-                  <td>{{ i.Guarantee }}</td>
-                  <td>
-                    <button @click="addToOrder(idx)" class="btn btn-addToOrder">
-                      <i class="fa fa-plus" aria-hidden="true"></i>
-                    </button>
-                  </td>
+                  <td>{{ idx + 1 }}</td>
+                  <td>{{ i.name }}</td>
+                  <td>{{ i.job }}</td>
+                  <td>{{ i.tel }}</td>
+                  <td>{{ i.brand }}</td>
+                  <td>{{ i.model }}</td>
+                  <td>{{ i.reg_num }}</td>
+                  <td>{{ i.release_year }}</td>
                 </tr>
               </table>
 
@@ -105,11 +102,10 @@
 
       </div>
     </div>
-
   </body>
 </html>
 
 <script src="https://unpkg.com/axios@1.0.0/dist/axios.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-<script src="js/script.js"></script>
+<script src="js/script_auto.js"></script>
