@@ -73,6 +73,7 @@ if (isset($_POST['phone']) && isset($_POST['password'])) {
                     $_SESSION['id'] = $row['ID_Client'];
                     $_SESSION['name'] = $row['FName'];
                     $_SESSION['tel'] = $row['Tel'];
+                    $_SESSION['address'] = $row['Address'];
                     header("Location: ../index.php");
                     exit();
                 } else {

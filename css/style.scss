@@ -779,3 +779,178 @@ nav a {
         }
     }
 }
+
+.note {
+    max-width: 80%;
+    background-color: $inputColor;
+    font-family: 'Roboto', sans-serif;
+    letter-spacing: 0.05em;
+    color: $greyColor;
+
+    &__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 30px;
+        h2 {
+            padding-bottom: 0;
+            padding-right: 20px;
+            text-transform: uppercase;
+        }
+        img {
+            width: 90px;
+            height: 90px;
+        }
+    }
+    &__data {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 40px;
+        p {
+            margin-bottom: 8px;
+        }
+        &-info-second {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 30px;
+        }
+        &-info {
+            &-title {
+                text-align: right;
+                font-weight: bold;
+            }
+            &-text {
+                text-align: left;
+            }
+        }
+    }
+    &__info {
+        display: flex;
+        justify-content: space-between;
+        gap: 50px;
+        margin-bottom: 25px;
+        &-user,
+        &-other {
+            width: 50%;
+            border-bottom: 3px solid $greyColor;
+            padding-bottom: 15px;
+            h4 {
+                font-size: 20px;
+                line-height: 28px;
+                margin-bottom: 20px;
+                padding: 15px 0;
+                border-top: 3px solid $greyColor;
+                border-bottom: 3px solid $greyColor;
+                border-radius: 20%;
+                text-align: center;
+            }
+        }
+        &-box {
+            font-size: 16px !important;
+            color: $greyColor !important;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        &-user {
+            &-title,
+            &-text {
+                div {
+                    margin-bottom: 10px;
+                }
+            }
+            &-title {
+                font-weight: bold;
+            }
+            &-text {
+                text-align: right;
+            }
+        }
+    }
+    &__text {
+        font-family: 'Roboto', sans-serif;
+        letter-spacing: 0.05em;
+        font-size: 16px;
+        line-height: 24px;
+        color: $greyColor;
+        b {
+            color: $titleColor;
+            font-size: 1.5rem;
+        }
+    }
+    &__res {
+        padding: 25px 25px 10px 25px;
+        margin-top: 20px !important;
+        border-top: 2px solid $titleColor;
+    }
+    &__list {
+        &-title {
+            font-size: 30px;
+            color: $titleColor;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            position: relative;
+            text-shadow: 1px 1px 2px $greyColor;
+            text-align: center;
+            line-height: 48px;
+            padding-bottom: 5px;
+        }
+        margin-top: 20px;
+        width: 100%;
+        padding: 12px;
+        border-radius: 4px;
+        padding: 12px !important;
+        li {
+            font-size: 16px;
+            border-radius: 5px;
+            padding: 10px;
+            border: 1px solid $titleColor;
+            background-color: $whiteColor;
+            color: rgba($titleColor, .7);
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+            position: relative;
+        }
+        .note__item-table {
+            &-head {
+                width: 100%;
+                padding: 10px;
+                border: 1px solid $titleColor;
+        border-radius: 4px;
+
+                color: $titleColor;
+                background-color: $whiteColor;
+            }
+            &-head,
+            &-body {
+                display: flex;
+                thead, 
+                tbody,
+                tr {
+                    display: flex;
+                    width: 100%;
+                }
+                th,
+                td {
+                    width: 100%;
+                    text-align: center;
+                }
+            }
+        }
+        .note__item {
+            &-result {
+                margin-top: 20px;
+                color: $titleColor;
+                & > p {
+                    font-weight: bold;
+                }
+                & > div {
+                    margin-top: 10px;
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
+            }
+        }
+    }
+}

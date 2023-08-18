@@ -27,6 +27,8 @@
             $stmt = sqlsrv_query($conn, $updSQL, $params);
 
             $_SESSION['name'] = $name;
+            $_SESSION['tel'] = $phone;
+            $_SESSION['address'] = $address;
 
             header("Location: user_profile.php");
             exit();

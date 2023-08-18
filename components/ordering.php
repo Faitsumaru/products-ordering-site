@@ -1,5 +1,4 @@
 <?php
-
 require_once dirname(__DIR__, 1) . '/php/funcs.php';
 
 $goods = get_allGoods();
@@ -12,7 +11,7 @@ $goods = get_allGoods();
   ?>
 </div> -->
 
-<?php debug($_SESSION); //session_destroy(); ?>
+<?php //debug($_SESSION); //session_destroy(); ?>
 
 <div id="app">
 
@@ -23,25 +22,51 @@ $goods = get_allGoods();
 
         <div class="cross-line"></div>
 
-        <form action="" class="form">
-
+        <form action="components/order_note.php" method="POST" class="form">
+            
             <div class="form__box">
+                <?php if(isset($_GET['error'])) { ?>
+                    <p class="form__error form__text"><?php echo $_GET['error']; ?></p>
+                <?php } ?>
+                
                 <p class="form__text">ФИО <b>*</b></p>
-                <input type="text" class="form__input" placeholder="Введите ФИО">
+                <?php if(isset($_SESSION['name'])) { ?>
+                    <input type="text" class="form__input" disabled placeholder="Введите ФИО" value="<?php echo $_SESSION['name'] ?>" name="name">
+                <?php } else if(isset($_GET['name'])) { ?>
+                    <input type="text" class="form__input" placeholder="Введите ФИО" value="<?php echo $_GET['name'] ?>" name="name">
+                <?php } else { ?>
+                    <input type="text" class="form__input" placeholder="Введите ФИО" value="" name="name">
+                <?php } ?>
+
+                <p class="form__text">Телефон <b>*</b></p>
+                <?php if(isset($_SESSION['tel'])) { ?>
+                    <input type="tel" class="form__input" disabled placeholder="Введите номер телефона" value="<?php echo $_SESSION['tel'] ?>" name="phone" id="phone_number">
+                <?php } else if(isset($_GET['phone'])) { ?>
+                    <input type="tel" class="form__input" placeholder="Введите номер телефона" value="<?php echo $_GET['phone'] ?>" name="phone" id="phone_number">
+                <?php } else { ?>
+                    <input type="tel" class="form__input" placeholder="Введите номер телефона" value="" name="phone" id="phone_number">
+                <?php } ?>
 
                 <p class="form__text">Тип доставки <b>*</b></p>
                 <select name="orderType" id="orderType-select" class="form__select">
-                    <option value="" disabled selected>--Выберите тип доставки--</option>
-                    <option value="orderingPoint">Доставка в пункт выдачи</option>
-                    <option value="orderingMail">Доставка в почтовое отделение</option>
-                    <option value="orderingHome">Доставка до дома</option>
+                    <?php if (isset($_GET['orderType'])) { ?>
+                        <option value="" <?php echo empty($_GET['orderType']) ? 'selected' : '' ?> disabled>--Выберите тип доставки--</option>
+                        <option value="orderingPoint" <?php echo (isset($_GET['orderType']) === 'orderingPoint') ? 'selected' : '' ?>>Доставка в пункт выдачи</option>
+                        <option value="orderingMail" <?php echo (isset($_GET['orderType']) === 'orderingMail') ? 'selected' : '' ?>>Доставка в почтовое отделение</option>
+                        <option value="orderingHome" <?php echo (isset($_GET['orderType']) === 'orderingHome') ? 'selected' : '' ?>>Доставка до дома</option>
+                    <?php } else { ?>
+                        <option value="" disabled selected>--Выберите тип доставки--</option>
+                        <option value="orderingPoint">Доставка в пункт выдачи</option>
+                        <option value="orderingMail">Доставка в почтовое отделение</option>
+                        <option value="orderingHome">Доставка до дома</option>
+                    <?php } ?>
                 </select>
 
                 <p class="form__text">Адрес доставки <b>*</b></p>
-                <input type="text" class="form__input" placeholder="Введите адрес доставки товара">
+                <input type="text" class="form__input" placeholder="Введите адрес доставки товара" value="<?php echo isset($_GET['address']) ? $_GET['address'] : '' ?>" name="address">
 
                 <p class="form__text">Дата доставки <b>*</b></p>
-                <input type="date" class="form__input form__input-clndr">
+                <input type="date" name="deliveryDate" class="form__input form__input-clndr">
 
                 <div class="form__order">
                     <p class="form__text">Список товаров:</p>
@@ -97,17 +122,17 @@ $goods = get_allGoods();
                                 </div>
                             </div>
                         </div>
-                <?php else: ?>
-                    <p class="form__result">Список пуст, добавьте товары!</p>
-                <?php endif; ?>
+                    <?php else: ?>
+                        <p class="form__result">Список пуст, добавьте товары!</p>
+                    <?php endif; ?>
                 </ul>
 
                 <p class="form__text">Сообщение:</p>
-                <textarea name="" id="" cols="30" rows="10" class="form__input" placeholder="Введите сообщение"></textarea>
+                <textarea name="message" id="" cols="30" rows="10" class="form__input" placeholder="Введите сообщение"></textarea>
 
             </div>
 
-            <input type="button" class="form__btn btn" value="Сделать заказ">
+            <input type="submit" name="submit" class="form__btn btn" value="Сделать заказ">
 
         </form>
 
