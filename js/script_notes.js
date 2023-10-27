@@ -107,7 +107,7 @@ var application = new Vue({
         //     }
         // }
         // xhr.send(params);
-      },
+    },
   
       sortBy(key) {
         return this.allData.sort(function(a, b){

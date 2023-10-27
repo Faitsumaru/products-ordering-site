@@ -15,8 +15,16 @@ $('#phone_number').one('click', function(){
   return false;
 });
 
+$('#phone_number2').one('click', function(){
+  $(this).setCursorPosition(2);  
+  return false;
+});
+
 $(document).ready(function() { 
 $("#phone_number").mask("8(999)999-99-99");
+});
+$(document).ready(function() { 
+$("#phone_number2").mask("8(999)999-99-99");
 });
 
 $(document).ready(function() { 
