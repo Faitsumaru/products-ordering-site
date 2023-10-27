@@ -62,6 +62,52 @@ var application = new Vue({
             alert('Произошла ошибка при добавлении записи!');
           });
       },
+
+      changeNoteBtn(id) {
+        let modal = document.getElementById("myModal");
+        modal.style.display = "flex";
+
+        let span = document.getElementsByClassName("close")[0];
+        span.onclick = function() {
+          modal.style.display = "none";
+        }
+        
+        window.onclick = function(event) {
+          if (event.target == modal) {
+            modal.style.display = "none";
+          }
+        }
+
+        // console.log(id)
+        this.noteID = id;
+        return id;
+      },
+
+      changeNote() {
+        axios.get(`php/change_note.php?ID_Note=${this.noteID}&cltName=${this.cltName}&ordAddress=${this.ordAddress}&ordDate=${this.ordDate}&empName=${this.empName}&autoModel=${this.autoModel})`)
+            .then(response => {
+                console.log(response.data.length);
+                if (response.data.length == '11922')
+                  alert('Данные заказа изменены!')
+            })
+            .catch(error => {
+                console.log(error);
+                alert('Произошла ошибка при изменении заказа!');
+            });
+    
+        // var xhr = new XMLHttpRequest();
+        // var url = "php/change_note.php";
+        // var params = `ID_Note=${this.noteID}`;
+        // alert(params)
+        // xhr.open("post", url, true);
+        // xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+        // xhr.onreadystatechange = function() {
+        //     if(xhr.readyState == 4 && xhr.status == 200) {
+        //         console.log(xhr.responseText);
+        //     }
+        // }
+        // xhr.send(params);
+      },
   
       sortBy(key) {
         return this.allData.sort(function(a, b){
