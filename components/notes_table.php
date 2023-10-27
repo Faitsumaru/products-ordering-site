@@ -2,6 +2,11 @@
 
 require_once dirname(__DIR__, 1) . '/php/funcs.php';
 
+// echo "<pre>";
+//     print_r($_POST);
+//     print_r($_GET);
+// echo "</pre>";
+
 ?>
 
 
@@ -14,7 +19,7 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/table.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/fonts.css">
     <link rel="stylesheet" href="css/reset.css">
   </head>
@@ -29,7 +34,6 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
           </select>
           
           <input v-model="searchInfo" @change="changeList()" type="text" class="search" placeholder="Поиск">
-
         </div> -->
           
         <div class="panel panel-default">
@@ -43,12 +47,17 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
             <div class="table-responsive">
               
               <table class="table table-bordered table-striped">
+
+                <?php if(isset($_GET['error'])) { ?>
+                    <p class="form__error form__text"><?php echo $_GET['error']; ?></p>
+                <?php } ?>
+                
                 <tr>
                   <th>ID</th>
                   <th @click="sortBy('ID_Note')" title="Номер накладной">Номер заказа <i class="fa fa-fw fa-sort"></i></th>
                   <th @click="sortBy('cltName')">Клиент <i class="fa fa-fw fa-sort"></i></th>
                   <th>Тел. клиента</th>
-                  <th @click="sortBy('DeliveryAddress')">Адрес доставки <i class="fa fa-fw fa-sort"></i></th>
+                  <th @click="sortBy('ordAddress')">Адрес доставки <i class="fa fa-fw fa-sort"></i></th>
                   <th @click="sortBy('ordDate')">Дата доставки <i class="fa fa-fw fa-sort"></i></th>
                   <th @click="sortBy('empName')">Менеджер <i class="fa fa-fw fa-sort"></i></th>
                   <th>Тел. менеджера</th>
@@ -57,7 +66,9 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                 </tr>
                 <tr v-for="(i, idx) in allData" :key="i.ID_Note">
                   <td>{{ idx + 1 }}</td>
-                  <td>{{ i.ID_Note }}</td>
+                  <td>
+                    <button @click="changeNoteBtn(i.ID_Note)" id="myBtn" title="Изменить данные заказа/накладной"> {{ i.ID_Note }} </button>
+                  </td>
                   <td>{{ i.cltName }}</td>
                   <td>{{ i.cltTel }}</td>
                   <td>{{ i.ordAddress }}</td>
@@ -67,20 +78,75 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                   <td>{{ i.Brand }}</td>
                   <td>{{ i.Model }}</td>
                   <td>
-                        <button @click="deleteNote(i.ID_Note)" class="btn btn-delOrder">
-                            <i class="fa fa-close" aria-hidden="true"></i>
-                        </button>
+                      <button @click="deleteNote(i.ID_Note)" class="btn btn-delNote" title="Удалить заказ/накладную">
+                          <i class="fa fa-close" aria-hidden="true"></i>
+                      </button>
                   </td>
                 </tr>
               </table>
 
+              <form method="get" action="php/add_note.php" class="form__addNote">
+                <p class="form__addNote-text">Добавить заказ:</p>
+                <!-- <input type="text" name="cltName"> -->
+                <select name="cltName" class="cltName">
+                  <option value="" disabled selected>--Выберите клиента--</option>
+                  <option v-for="name in clientNames" :value="name">{{ name }}</option>
+                </select>
+
+                <input type="text" name="ordAddress" class="ordAddress" placeholder="Адрес доставки">
+                <input name="ordDate" class="ordDate" placeholder="Дата доставки" type="text" onfocus="(this.type='date')" onblur="(this.value == '' ? this.type='text' : this.type='date')">
+
+                <!-- <input type="text" name="empName"> -->
+                <select name="empName" class="empName">
+                  <option value="" disabled selected>--Выберите менеджера--</option>
+                  <option v-for="name in employeeNames" :value="name">{{ name }}</option>
+                </select>
+
+                <input type="text" name="autoModel" class="autoModel" placeholder="Модель авто">
+
+                <button @click="addNote" type="submit" class="btn btn-addNote" title="Добавить заказ/накладную">
+                  <i class="fa fa-plus" aria-hidden="true"></i>
+                </button>
+              </form>
+
             </div>
           </div>
-
         </div>
 
       </div>
+
+      <div id="myModal" class="modal">
+        <div class="modal-content">
+          <span class="close">&times;</span>
+
+          <h2 class="sign-title">Данные заказа</h2>
+
+          <form method="get" action="php/change_note.php" class="form form__change">
+              <input type="" :value="noteIdFind" hidden name="ID_Note">
+
+              <select name="cltName" class="cltName form__input">
+                <option value="" disabled selected>--Выберите клиента--</option>
+                <option v-for="name in clientNames" :value="name">{{ name }}</option>
+              </select>
+
+              <input type="text" name="ordAddress" class="ordAddress form__input" placeholder="Адрес доставки">
+
+              <input name="ordDate" class="ordDate form__input" placeholder="Дата доставки" type="text" onfocus="(this.type='date')" onblur="(this.value == '' ? this.type='text' : this.type='date')">
+
+              <select name="empName" class="empName form__input">
+                <option value="" disabled selected>--Выберите менеджера--</option>
+                <option v-for="name in employeeNames" :value="name">{{ name }}</option>
+              </select>
+
+              <input type="text" name="autoModel" class="autoModel form__input" placeholder="Модель авто">
+
+              <button @click="changeNote" type="submit" name="submit" class="form__btn btn update-btn" value="Обновить данные">Обновить данные</button>
+          </form>
+
+        </div>
+      </div>
     </div>
+
   </body>
 </html>
 

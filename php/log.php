@@ -4,12 +4,6 @@ session_start();
 require('funcs.php');
 
 if (isset($_POST['phone']) && isset($_POST['password'])) {
-    function validate($data) {
-        $data = trim($data);
-        $data = stripcslashes($data);
-        $data = htmlspecialchars($data);
-        return $data;
-    }
     
     $tel = validate($_POST['phone']);
     $pass = validate($_POST['password']);

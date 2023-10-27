@@ -7,6 +7,13 @@ function debug(array $data): void
     echo '<pre>' . print_r($data, 1) . '</pre>';
 }
 
+function validate($data) {
+    $data = trim($data);
+    $data = stripcslashes($data);
+    $data = htmlspecialchars($data);
+    return $data;
+}
+
 function get_allGoods(): array
 {
     global $conn;
