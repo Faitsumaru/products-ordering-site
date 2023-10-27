@@ -109,4 +109,47 @@ function getData($tsql): string
     return $res;
 }
 
+
+// function getNotes(int $id): array|false
+// {
+//     global $conn;
+
+//     $tsql = "SELECT * FROM Consignment_Note WHERE ID_Note = ?";
+//     $params = array($id);
+//     $stmt = sqlsrv_query($conn, $tsql, $params);
+
+//     if ($stmt === false) {
+//         return false;
+//     }
+
+//     $result = array();
+//     while ($row = sqlsrv_fetch_array($stmt, SQLSRV_FETCH_ASSOC)) {
+//         $result = $row;
+//     }
+
+//     sqlsrv_free_stmt($stmt);
+//     sqlsrv_close($conn);
+
+//     return $result;
+// }
+
+// function delNote($notes): void
+// {
+//     global $conn;
+
+//     $id = $_GET["id"];
+//     $sql = "DELETE FROM Consignment_Note WHERE ID_Note = = ?";
+//     $params = array($id);
+
+//     $stmt = sqlsrv_query( $conn, $sql, $params);
+//     if( $stmt === false ) {
+//         die( print_r( sqlsrv_errors(), true));
+//     }
+
+//     echo "Data Deleted";
+
+//     sqlsrv_free_stmt($stmt);
+//     sqlsrv_close($conn);
+// }
+
 ?>

@@ -161,9 +161,13 @@
             </form>
 
             <div class="profile__box">
-                <div>
-                    <a href="consignment_note.php">Накладная по заказу</a>
-                </div>
+                <?php if (isset($_SESSION['id_note'])) { ?>
+                    <div>
+                        <a href="consignment_note.php">Накладная по заказу</a>
+                    </div>
+                <?php } else { ?>
+                    <div></div>
+                <?php } ?>
     
                 <form method="POST" action="php/delete_user.php?id=<?php echo $_SESSION['id']; ?>" onsubmit="return DeleteConfirm()" class="form__del-user">
                     <button type="submit" class="form__del-user-btn">Удалить аккаунт</button>

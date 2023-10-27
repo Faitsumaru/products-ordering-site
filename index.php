@@ -50,7 +50,7 @@
                             <li></li>
 <?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Менеджер') { ?>
                             <li>
-                                <a href="" class="header__nav-link">Список заказов клиентов</a>
+                                <a href="orders_list.php" class="header__nav-link">Список заказов клиентов</a>
                             </li>
                             <li></li>
 <?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Автомеханик') { ?>
@@ -98,7 +98,14 @@
                 <div class="hero__textbox">
                     <h1 class="hero__title">Яндекс доставит ваши товары быстро и надежно</h1>
                     <p class="hero__text">Мы предоставляем услуги по доставке товаров на беспилотном автомобильном транспорте</p>
-                    <a href="make_order.php" class="hero__btn btn">Сделать заказ</a>
+
+                    <?php if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Админ') { ?>
+                        <a href="" class="hero__btn btn">Управление БД</a>
+                    <?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Менеджер') { ?>
+                            <a href="orders_list.php" class="hero__btn btn">Список заказов</a>
+                    <?php } else { ?>
+                        <a href="" class="hero__btn btn">Сделать заказ</a>
+                    <?php } ?>
                 </div>
                 
                 <div class="hero__img">

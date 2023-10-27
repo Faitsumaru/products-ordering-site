@@ -67,6 +67,7 @@ if(isset($_POST['submit'])) {
             $autoID_SQL = "SELECT TOP 1 Auto.ID_Auto FROM Auto
             ORDER BY NEWID()";
             $employeeID_SQL = "SELECT TOP 1 Employee.ID_Employee FROM Employee
+            WHERE Employee.Job = 'Менеджер'
             ORDER BY NEWID()";
 
             $stmtAutoID = sqlsrv_query($conn, $autoID_SQL);
@@ -334,7 +335,7 @@ if(isset($_POST['submit'])) {
         let consignment_note = document.querySelector('.consignment_note');
 
         function PDF() {
-            alert("Данные о накладной скачаны!");
+            alert("Данные накладной скачаны!");
             html2pdf(consignment_note);
         }
     </script>
