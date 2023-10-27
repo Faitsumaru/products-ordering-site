@@ -52,7 +52,7 @@ require_once dirname(__DIR__, 1) . '/php/funcs.php';
                         </li>
 <?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Админ') { ?>
                             <li>
-                                <a href="" class="header__nav-link">Управление базой данных</a>
+                                <a href="control_list.php" class="header__nav-link">Управление базой данных</a>
                             </li>
                             <li></li>
 <?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Менеджер') { ?>

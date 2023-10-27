@@ -1094,3 +1094,149 @@ nav a {
     text-decoration: none;
     cursor: pointer;
 }
+
+.control {
+    &-list {
+        li {
+            i {
+                margin-right: 20px;
+            }
+            margin-top: 30px;
+            a {
+                position: relative;
+                transition: all .4s ease-in;
+                &::after {
+                    content: '';
+                    background: none repeat scroll 0 0 transparent;
+                    bottom: -4px;
+                    display: block;
+                    height: 2px;
+                    left: 50%;
+                    position: absolute;
+                    background: $redColor;
+                    transition: width 0.3s ease 0s, left 0.3s ease 0s;
+                    width: 0;
+                }
+                &:hover {
+                    color: $redColor;
+                    &::after {
+                        width: 100%; 
+                        left: 0; 
+                    }
+                }
+            }
+        }
+    }
+    .cross-line {
+        margin-bottom: 40px;
+    }
+}
+
+.client, .employee, .auto, .goods {
+    input, option[selected] {
+        text-align: center;
+        height: 100%;
+        border: 1px solid #ddd;
+    }
+    select {
+        height: 100%;
+        border: 1px solid #ddd;
+        color: rgba($blackColor, .65);
+        option:not([selected]) {
+            color: $blackColor;
+        }
+    }
+    &__text {
+        width: 120px;
+        padding: 10px;
+        color: $titleColor;
+    }
+    &__change {
+        input, select {
+            width: 100%;
+        }
+    }
+}
+.client {
+    &__name {
+        width: 270px;
+    }
+    &__tel {
+        width: 135px;
+    }
+    &__sex {
+        width: 67px;
+    }
+    &__date {
+        width: 141px;
+    }
+    &__address {
+        width: 250px;
+    }
+    &__password {
+        width: 91px;
+    }
+}
+.employee {
+    &__text {
+        width: 185px;
+    }
+    &__name {
+        width: 314px;
+    }
+    &__tel {
+        width: 207px;
+    }
+    &__job {
+        width: 174px;
+    }
+    &__password {
+        width: 161px;
+    }
+    &__add-btn {
+        margin: 8px 25px !important;
+    }
+}
+.auto {
+    &__text {
+        width: 231px;
+    }
+    &__releaseyear {
+        width: 233px;
+    }
+    &__brand {
+        width: 163px;
+    }
+    &__model {
+        width: 176px;
+    }
+    &__regnum {
+        width: 213px;
+    }
+    &__add-btn {
+        margin: 8px 38px !important;
+    }
+}
+.goods {
+    &__text {
+        width: 205px;
+    }
+    &__name {
+        width: 166px;
+    }
+    &__producer {
+        width: 245px;
+    }
+    &__guarantee {
+        width: 175px;
+    }
+    &__weight {
+        width: 112px;
+    }
+    &__price {
+        width: 129px;
+    }
+    &__add-btn {
+        margin: 8px 30px !important;
+    }
+}

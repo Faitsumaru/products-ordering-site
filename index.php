@@ -45,7 +45,7 @@
                             </li>
 <?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Админ') { ?>
                             <li>
-                                <a href="" class="header__nav-link">Управление базой данных</a>
+                                <a href="control_list.php" class="header__nav-link">Управление базой данных</a>
                             </li>
                             <li></li>
 <?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Менеджер') { ?>
@@ -100,11 +100,11 @@
                     <p class="hero__text">Мы предоставляем услуги по доставке товаров на беспилотном автомобильном транспорте</p>
 
                     <?php if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Админ') { ?>
-                        <a href="" class="hero__btn btn">Управление БД</a>
+                        <a href="control_list.php" class="hero__btn btn">Управление БД</a>
                     <?php } else if (isset($_SESSION['employee_check']) && $_SESSION['job'] == 'Менеджер') { ?>
                             <a href="orders_list.php" class="hero__btn btn">Список заказов</a>
                     <?php } else { ?>
-                        <a href="" class="hero__btn btn">Сделать заказ</a>
+                        <a href="make_order.php" class="hero__btn btn">Сделать заказ</a>
                     <?php } ?>
                 </div>
                 

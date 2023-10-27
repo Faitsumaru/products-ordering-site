@@ -1032,4 +1032,138 @@ nav a:hover::after {
   color: #000;
   text-decoration: none;
   cursor: pointer;
+}
+
+.control-list li {
+  margin-top: 30px;
+}
+.control-list li i {
+  margin-right: 20px;
+}
+.control-list li a {
+  position: relative;
+  transition: all 0.4s ease-in;
+}
+.control-list li a::after {
+  content: "";
+  background: none repeat scroll 0 0 transparent;
+  bottom: -4px;
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #EC1C24;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.control-list li a:hover {
+  color: #EC1C24;
+}
+.control-list li a:hover::after {
+  width: 100%;
+  left: 0;
+}
+.control .cross-line {
+  margin-bottom: 40px;
+}
+
+.client input, .client option[selected], .employee input, .employee option[selected], .auto input, .auto option[selected], .goods input, .goods option[selected] {
+  text-align: center;
+  height: 100%;
+  border: 1px solid #ddd;
+}
+.client select, .employee select, .auto select, .goods select {
+  height: 100%;
+  border: 1px solid #ddd;
+  color: rgba(0, 0, 0, 0.65);
+}
+.client select option:not([selected]), .employee select option:not([selected]), .auto select option:not([selected]), .goods select option:not([selected]) {
+  color: #000;
+}
+.client__text, .employee__text, .auto__text, .goods__text {
+  width: 120px;
+  padding: 10px;
+  color: #172755;
+}
+.client__change input, .client__change select, .employee__change input, .employee__change select, .auto__change input, .auto__change select, .goods__change input, .goods__change select {
+  width: 100%;
+}
+
+.client__name {
+  width: 270px;
+}
+.client__tel {
+  width: 135px;
+}
+.client__sex {
+  width: 67px;
+}
+.client__date {
+  width: 141px;
+}
+.client__address {
+  width: 250px;
+}
+.client__password {
+  width: 91px;
+}
+
+.employee__text {
+  width: 185px;
+}
+.employee__name {
+  width: 314px;
+}
+.employee__tel {
+  width: 207px;
+}
+.employee__job {
+  width: 174px;
+}
+.employee__password {
+  width: 161px;
+}
+.employee__add-btn {
+  margin: 8px 25px !important;
+}
+
+.auto__text {
+  width: 231px;
+}
+.auto__releaseyear {
+  width: 233px;
+}
+.auto__brand {
+  width: 163px;
+}
+.auto__model {
+  width: 176px;
+}
+.auto__regnum {
+  width: 213px;
+}
+.auto__add-btn {
+  margin: 8px 38px !important;
+}
+
+.goods__text {
+  width: 205px;
+}
+.goods__name {
+  width: 166px;
+}
+.goods__producer {
+  width: 245px;
+}
+.goods__guarantee {
+  width: 175px;
+}
+.goods__weight {
+  width: 112px;
+}
+.goods__price {
+  width: 129px;
+}
+.goods__add-btn {
+  margin: 8px 30px !important;
 }/*# sourceMappingURL=style.css.map */
