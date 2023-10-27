@@ -5,16 +5,22 @@ var application = new Vue({
         allData: [],
         id: '',
         searchInfo: '',
-        filterSelType: 'name',
-        filterSelOptions: [
-          { text: 'Работник', value: 'name' },
-          { text: 'Должность', value: 'job' },
-          { text: 'Телефон', value: 'tel' },
-          { text: 'Авто', value: 'brand' },
-          { text: 'Модель', value: 'model' },
-          { text: 'Рег. номер', value: 'reg_num' },
-          { text: 'Год выпуска', value: 'release_year' },
-        ]
+        cltName: '',
+        ordAddress: '',
+        ordDate: '',
+        empName: '',
+        autoModel: '',
+        noteID: '',
+        // filterSelType: '',
+        // filterClientNames: [
+        //   { text: 'Работник', value: 'name' },
+        //   { text: 'Должность', value: 'job' },
+        //   { text: 'Телефон', value: 'tel' },
+        //   { text: 'Авто', value: 'brand' },
+        //   { text: 'Модель', value: 'model' },
+        //   { text: 'Рег. номер', value: 'reg_num' },
+        //   { text: 'Год выпуска', value: 'release_year' },
+        // ]
       };
     },
     methods: {
@@ -42,6 +48,20 @@ var application = new Vue({
             alert('Произошла ошибка при удалении заказа!');
           })
       },
+
+      addNote() {
+        axios
+        .get('php/add_note.php', { params: { cltName: this.cltName, ordAddress: this.ordAddress, ordDate: this.ordDate, empName: this.empName, autoModel: this.autoModel } })
+          .then(response => {
+            console.log(response.data.length);
+            if (response.data.length == '12659')
+              alert('Заказ успешно добавлен!');
+          })
+          .catch(error => {
+            console.log(error);
+            alert('Произошла ошибка при добавлении записи!');
+          });
+      },
   
       sortBy(key) {
         return this.allData.sort(function(a, b){
@@ -49,6 +69,8 @@ var application = new Vue({
             return (a[key] > b[key]) ? 1 : -1;
           else if (key == 'ordDate')
             return (a[key].slice(a[key].length-4, a[key].length) > b[key].slice(b[key].length-4, b[key].length)) ? -1 : 1;
+          else if (key == 'ID_Note')
+            return (a[key] > b[key] ? -1 : -1);
           return (parseInt(a[key]) >= parseInt(b[key])) ? 1 : -1;
         });
       },
@@ -64,6 +86,18 @@ var application = new Vue({
   
     computed: {
       
+      clientNames() {
+        return [...new Set(this.allData.map(n => n.cltName))];
+      },
+
+      employeeNames() {
+        return [...new Set(this.allData.map(n => n.empName))];
+      },
+
+      noteIdFind() {
+        return this.noteID;
+      }
+
       // filteredList() {        
       //   let sel = this.filterSelect();
       //   var si = this.searchInfo;
