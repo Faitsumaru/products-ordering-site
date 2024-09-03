@@ -24,6 +24,160 @@
   </p>
 </div>
 
+## About
+Веб-приложение для дипломной бакалаврской выпускной работы. <br>
+[made with: `PHP`, `VueJS`, `SQL`, `HTML` & `SCSS`].
+
+## UI Preshow
+
+<div align="center">
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/3.png" alt="ui-preshow-img">
+        <p>
+            Главная страница веб-приложения
+        </p>
+    </div>
+    <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/4.png" alt="ui-preshow-img">
+        <p>
+            Страница с авторизацией в веб-приложении
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/5.png" alt="ui-preshow-img">
+        <p>
+            Страница с регистрацией в веб-приложении
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/6.png" alt="ui-preshow-img">
+        <p>
+            Пример валидации полей для ввода данных
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/7.png" alt="ui-preshow-img">
+        <p>
+            Успешный вход в систему
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/8.png" alt="ui-preshow-img">
+        <p>
+            Личный кабинет пользователя
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/9.png" alt="ui-preshow-img">
+        <p>
+            Страница со списком товаров в веб-приложении
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/10.png" alt="ui-preshow-img">
+        <p>
+            Весь список товаров без пагинации
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/11.png" alt="ui-preshow-img">
+        <p>
+            Поиск товаров по таблице с данными
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/12.png" alt="ui-preshow-img">
+        <p>
+            Оформление заказа
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/13.png" alt="ui-preshow-img">
+        <p>
+            Список товаров и функция их удаления из корзины
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/14.png" alt="ui-preshow-img">
+        <p>
+            Пустой список товаров корзины
+        </p>
+    </div>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/15.png" alt="ui-preshow-img">
+        <p>
+            Накладная по оформленному заказу
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/16.png" alt="ui-preshow-img">
+        <p>
+            Кнопка для скачивания накладной в PDF-формате
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/17.png" alt="ui-preshow-img">
+        <p>
+            Накладная по заказу в PDF-формате
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/18.png" alt="ui-preshow-img">
+        <p>
+            Страница «Список авто» для автомехаников
+        </p>
+    </div>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/19.png" alt="ui-preshow-img">
+        <p>
+            Страница «Список заказов клиентов» для менеджеров
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/20.png" alt="ui-preshow-img">
+        <p>
+            Добавление нового заказа
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/21.png" alt="ui-preshow-img">
+        <p>
+            Изменение данных накладной
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/22.png" alt="ui-preshow-img">
+        <p>
+            Панель управления базой данных для администратора
+        </p>
+    </div>
+     <br>
+    <div href="https://github.com/Faitsumaru/products-ordering-site">
+        <img src="images/preshow/23.png" alt="ui-preshow-img">
+        <p>
+            Пример страницы с панелью управления БД
+        </p>
+    </div>
+
+</div>
+
 
 <p align="right"><a href="#readme-top">⬆</a></p>
 
